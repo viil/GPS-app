@@ -15,6 +15,9 @@ var userlocation = document.getElementById("userlocation");
 var destination = document.getElementById("destination");
 var arrived = document.getElementById("arrived");
 
+var step = 1;
+var steps = 10;
+
 var userlat = 0;
 var userlong = 0;
     
@@ -27,6 +30,9 @@ var destinationlong = -122.4900617;
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.watchPosition(showPosition);
+        while (step < (steps + 1)) {
+            nextStep;
+        }
     } else { 
         userlocation.innerHTML = "Geolocation is not supported by this browser.";}
     }
@@ -39,7 +45,9 @@ function showPosition(position) {
     
     userlocation.innerHTML="Your Position:<br>Latitude: " + position.coords.latitude + " (" + userlat + ") " +
     "<br>Longitude: " + position.coords.longitude + " (" + userlong + ") ";
-
+}
+    
+function nextStep() {
     // round destination coordinates to 4 decimals
     var destlat = destinationlat.toFixed(4);
     var destlong = destinationlong.toFixed(4);
@@ -49,7 +57,8 @@ function showPosition(position) {
 
     // check if user location and destination is the same
     if (userlat == destlat && userlong == destlong) {
-        arrived.innerHTML="Welcome! You have arrived!!! Congratulations!";
+        arrived.innerHTML="Welcome! You have arrived at step " + step + "!!! Congratulations!";
+        step++;
     }
     else {
         arrived.innerHTML="You're not there yet...";
