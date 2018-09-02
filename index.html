@@ -14,23 +14,27 @@ var x = document.getElementById("demo");
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.watchPosition(showPosition);
+        showDestination(37.737306,-122.491076);
     } else { 
         x.innerHTML = "Geolocation is not supported by this browser.";}
     }
     
 function showPosition(position) {
-    var latitude = position.coords.latitude.toFixed(4);
-    var longitude = position.coords.longitude.toFixed(4);
+    var userlat = position.coords.latitude.toFixed(4);
+    var userlong = position.coords.longitude.toFixed(4);
     
-    x.innerHTML="Latitude: " + position.coords.latitude + " (" + latitude + ") " +
-    "<br>Longitude: " + position.coords.longitude + " (" + longitude + ") ";
+    x.innerHTML="Your Position:<br>Latitude: " + position.coords.latitude + " (" + userlat + ") " +
+    "<br>Longitude: " + position.coords.longitude + " (" + userlong + ") ";
+}
+    
+function showDestination(destinationlat, destinationlong) {
+    var destlat = destinationlat.toFixed(4);
+    var destlong = destinationlong.toFixed(4);
+    
+    x.innerHTML="Destination:<br>Latitude: " + destinationlat + " (" + destlat + ") " +
+    "<br>Longitude: " + destinationlong + " (" + destlong + ") ";
 }
 </script>
-    
-<br>
-    <p>How close are we to:<br>
-        37.737306<br>
-        -122.491076</p>
 
 </body>
 </html>
