@@ -2,9 +2,9 @@
 <html>
 <body>
 
-<p>Click the button to get your coordinates.</p>
+<p>Click the button to get started.</p>
 
-<button onclick="getLocation()">Try It</button>
+<button onclick="getLocation()">Start</button>
 
 <p id="userlocation"></p>
 <p id="destination"></p>
@@ -15,22 +15,29 @@ var userlocation = document.getElementById("userlocation");
 var destination = document.getElementById("destination");
 var arrived = document.getElementById("arrived");
 
-var step = 1;
-var steps = 10;
+var locations = [
+  [37.7357774, -122.4900617],
+  [37.737306, -122.491076],
+  [37.737761, -122.490339]
+];
+console.log(items[0][0]); // 1
+console.log(items); 
+    
+var step = 0;
+var steps = 3;
 
 var userlat = 0;
 var userlong = 0;
     
-// var destinationlat = 37.737306;
-// var destinationlong = -122.491076;
-    
-var destinationlat = 37.7357774;
-var destinationlong = -122.4900617;
+var destinationlat = 0;
+var destinationlong = 0;
 
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.watchPosition(showPosition);
-        while (step < (steps + 1)) {
+        while (step < (steps) {
+            destinationlat = destination[step][0];
+            destinationlong = destination[step][1];
             nextStep;
         }
     } else { 
@@ -57,7 +64,7 @@ function nextStep() {
 
     // check if user location and destination is the same
     if (userlat == destlat && userlong == destlong) {
-        arrived.innerHTML="Welcome! You have arrived at step " + step + "!!! Congratulations!";
+        arrived.innerHTML= step + " Welcome! You have arrived at step " + step + "!!! Congratulations!";
         step++;
     }
     else {
