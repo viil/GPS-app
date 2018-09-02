@@ -19,8 +19,11 @@ function getLocation() {
     }
     
 function showPosition(position) {
-    x.innerHTML="Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude;
+    var latitude = position.coords.latitude.toFixed(4);
+    var longitude = position.coords.longitude.toFixed(4);
+    
+    x.innerHTML="Latitude: " + position.coords.latitude + " (" + latitude + ") " +
+    "<br>Longitude: " + position.coords.longitude + " (" + longitude + ") ";
 }
 </script>
     
