@@ -14,15 +14,15 @@
 var userlocation = document.getElementById("userlocation");
 var destination = document.getElementById("destination");
 
-var destinationlat = parseFloat("37.737306");
-var destinationlong = parseFloat("-122.491076");
+var destinationlat = 37.737306;
+var destinationlong = -122.491076;
 
 
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.watchPosition(showPosition);
-        showDestination();
-        whenArrived();
+        showDestination(destinationlat,destinationlong);
+        whenArrived(position, destinationlat, destinationlong);
     } else { 
         userlocation.innerHTML = "Geolocation is not supported by this browser.";}
     }
