@@ -8,15 +8,21 @@
 
 <p id="userlocation"></p>
 <p id="destination"></p>
+<p id="arrived"></p>
 
 <script>
 var userlocation = document.getElementById("userlocation");
 var destination = document.getElementById("destination");
 
+var destinationlat = 37.737306;
+var destinationlong = -122.491076;
+
+
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.watchPosition(showPosition);
-        showDestination(37.737306,-122.491076);
+        showDestination();
+        whenArrived();
     } else { 
         userlocation.innerHTML = "Geolocation is not supported by this browser.";}
     }
@@ -36,6 +42,18 @@ function showDestination(destinationlat, destinationlong) {
     destination.innerHTML="Destination:<br>Latitude: " + destinationlat + " (" + destlat + ") " +
     "<br>Longitude: " + destinationlong + " (" + destlong + ") ";
 }
+    
+function whenArrived(position, destinationlat, destinationlong) {
+    var userlat = position.coords.latitude.toFixed(4);
+    var userlong = position.coords.longitude.toFixed(4);
+    var destlat = destinationlat.toFixed(4);
+    var destlong = destinationlong.toFixed(4);
+    
+    if (userlat == destlat && userlong == destlong) {
+        arrived.innerHTML="Welcome! You have arrived!!! Congratulations!";
+    }
+}
+    
 </script>
 
 </body>
