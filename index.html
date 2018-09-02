@@ -18,8 +18,11 @@ var arrived = document.getElementById("arrived");
 var userlat = 0;
 var userlong = 0;
     
-var destinationlat = 37.737306;
-var destinationlong = -122.491076;
+// var destinationlat = 37.737306;
+// var destinationlong = -122.491076;
+    
+var destinationlat = 37.7357774;
+var destinationlong = -122.4900617;
 
 function getLocation() {
     if (navigator.geolocation) {
@@ -29,18 +32,22 @@ function getLocation() {
     }
     
 function showPosition(position) {
+    
+    // round user location coordinates to 4 decimals
     userlat = position.coords.latitude.toFixed(4);
     userlong = position.coords.longitude.toFixed(4);
     
     userlocation.innerHTML="Your Position:<br>Latitude: " + position.coords.latitude + " (" + userlat + ") " +
     "<br>Longitude: " + position.coords.longitude + " (" + userlong + ") ";
 
+    // round destination coordinates to 4 decimals
     var destlat = destinationlat.toFixed(4);
     var destlong = destinationlong.toFixed(4);
     
     destination.innerHTML="Destination:<br>Latitude: " + destinationlat + " (" + destlat + ") " +
     "<br>Longitude: " + destinationlong + " (" + destlong + ") ";
 
+    // check if user location and destination is the same
     if (userlat == destlat && userlong == destlong) {
         arrived.innerHTML="Welcome! You have arrived!!! Congratulations!";
     }
