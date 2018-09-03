@@ -15,13 +15,13 @@ var userlocation = document.getElementById("userlocation");
 var destination = document.getElementById("destination");
 var arrived = document.getElementById("arrived");
 
-var locations = [
+var destinations = [
   [37.7357774, -122.4900617],
   [37.737306, -122.491076],
   [37.737761, -122.490339]
 ];
-console.log(locations[0][0]); // 1
-console.log(locations); 
+console.log(destinations[0][0]); // 1
+console.log(destinations); 
     
 var step = 0;
 var steps = 3;
@@ -36,8 +36,8 @@ function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.watchPosition(showPosition);
         while (step < steps) {
-            destinationlat = destination[step][0];
-            destinationlong = destination[step][1];
+            destinationlat = destinations[step][0];
+            destinationlong = destinations[step][1];
             nextStep;
         }
     } else { 
